@@ -60,6 +60,6 @@ def build_queue(build: str, build_list: dict, task_list: dict) -> list:
 @app.post("/get_tasks")
 async def get_tasks(build: Build) -> Union[Dict[str, str], List[str]]:
     if build.name not in builds:
-            raise HTTPException(status_code=404, detail="Build not found")
+        raise HTTPException(status_code=404, detail="Build not found")
     task_order = build_queue(build.name, builds, tasks)
     return task_order

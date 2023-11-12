@@ -14,15 +14,15 @@ class TestWeb(TestCase):
         self.client.close()
 
     def test_get_tasks(self):
-        response = self.client.post("/get_tasks", json={"build": "test_build"})
+        response = self.client.post("/get_tasks", json={"name": "test_build"})
         self.assertEqual(200, response.status_code)
         self.assertEqual(response.json(),
                           ["pack_game_files", "pack_docker", "pack_server_files", "build_exe", "pack_in_zip"])
 
     def test_get_tasks_non_existent_build(self):
-        response = self.client.post("/get_tasks", json={"build": "non_existent_build"})
-        self.assertEqual(200, response.status_code)
-        self.assertEqual(response.json(), {"error": "Build not found"})
+        response = self.client.post("/get_tasks", json={"name": "non_existent_build"})
+        self.assertEqual(404, response.status_code)
+        self.assertEqual(response.json(), {"detail": "Build not found"})
 
 
 class TestSortingTasksDependencies(TestCase):
