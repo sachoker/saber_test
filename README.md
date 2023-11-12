@@ -25,7 +25,7 @@ uvicorn main:app --reload
 You can also run the application in Docker using Docker Compose:
 
 ```bash
-docker.exe compose -f C:\Users\Aleks\PycharmProjects\saber_test\docker-compose.yml -p saber_test up -d
+docker.exe compose -f ./docker-compose.yml -p saber_test up -d
 ```
 
 ## Testing
